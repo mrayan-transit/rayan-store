@@ -5,25 +5,32 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using RayanStore.Areas.Admin.Models;
 using RayanStore.Data;
+using RayanStore.Services;
 
 namespace RayanStore.Areas.Admin.Pages.Products
 {
     public class EditModel : PageModel
     {
         private readonly StoreDbContext _dbContext;
+        private readonly IFileUploader _fileUploader;
 
-        public EditModel(StoreDbContext dbContext)
-            => _dbContext = dbContext;
-
+        public EditModel(StoreDbContext dbContext, IFileUploader fileUploader)
+        {
+            _dbContext = dbContext;
+            _fileUploader = fileUploader;
+        }
+            
         public async Task<IActionResult> OnGetAsync()
         {
-            Product = await _dbContext.Products
+            ProductModel = await _dbContext.Products
                 .AsNoTracking()
                 .Where(x => x.Id == Id)
+                .Select(x => new ProductModel(x))
                 .SingleOrDefaultAsync();
 
-            if (Product == null)
+            if (ProductModel == null)
                 return NotFound();
 
             return Page();
@@ -38,13 +45,19 @@ namespace RayanStore.Areas.Admin.Pages.Products
             if (entity == null)
                 return NotFound();
 
-            
+            if (ProductModel.ImageFile != null && 
+                ProductModel.ImageFile.Length > 0)
+            {
+                _fileUploader.Delete(entity.ImageUrl);
+                ProductModel.ImageUrl = await _fileUploader.Upload(ProductModel.ImageFile, "products");
+            }
 
             //Bind properties
-            entity.Name = Product.Name;
-            entity.Description = Product.Description;
-            entity.IsFeatured = Product.IsFeatured;
-            entity.Price = Product.Price;
+            entity.Name = ProductModel.Name;
+            entity.Description = ProductModel.Description;
+            entity.IsFeatured = ProductModel.IsFeatured;
+            entity.Price = ProductModel.Price;
+            entity.ImageUrl = ProductModel.ImageUrl;
 
             await _dbContext.SaveChangesAsync();
             return RedirectToPage("Index");
@@ -54,6 +67,6 @@ namespace RayanStore.Areas.Admin.Pages.Products
         public int Id {get;set;}
 
         [BindProperty]
-        public Product Product {get;set;}
+        public ProductModel ProductModel {get;set;}
     }
 }

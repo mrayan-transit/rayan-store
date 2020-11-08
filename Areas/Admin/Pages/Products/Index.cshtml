@@ -29,7 +29,7 @@
                             <td>@product.Name</td>
                             <td>@product.Price.ToString("#.00")</td>
                             <td>
-                                <img src="/@(!string.IsNullOrEmpty(product.ImageUrl) ? product.ImageUrl : "dist/img/no-image.png")" alt="@product.Name image">
+                                <img src="/@(!string.IsNullOrEmpty(product.ImageUrl) ? product.ImageUrl : "dist/img/no-image.png")" alt="@product.Name image" height="100">
                             </td>
                             <td>
                                 <a asp-page="Edit" asp-route-id="@product.Id" class="btn btn-sm btn-primary">Edit</a>
