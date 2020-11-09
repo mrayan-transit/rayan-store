@@ -4,7 +4,7 @@ namespace RayanStore.Data
 {
     public class User
     {
-        public static readonly string[] Roles = new string[] {"Admin", "Merchant"};
+        public static readonly string[] AvailableRoles = new string[] {"Admin", "Sales", "Merchant"};
 
         public int Id {get;set;}
 
@@ -17,7 +17,7 @@ namespace RayanStore.Data
         public string FullName {get;set;}
 
         [Required]
-        [StringLength(20)]
+        [StringLength(50)]
         public string Email {get;set;}
 
         [Required]
@@ -25,7 +25,7 @@ namespace RayanStore.Data
         public string PasswordHash {get;set;}
 
         [Required]
-        [StringLength(20)]
-        public string Role {get;set;}
+        [StringLength(50)]
+        public string Roles {get;set;}
     }
 }

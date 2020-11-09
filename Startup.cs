@@ -39,6 +39,8 @@ namespace RayanStore
                     options.AccessDeniedPath = "/Admin/Account/AccessDenied";
                 });
 
+
+
             services.AddRazorPages()
                 .AddRazorPagesOptions(options => 
                 {

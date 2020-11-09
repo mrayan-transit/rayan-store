@@ -45,7 +45,7 @@ namespace RayanStore.Areas.Admin.Pages.Users
             {
                 Email = UserModel.Email,
                 FullName = UserModel.FullName,
-                Role = UserModel.Role,
+                Roles = string.Join(',', UserModel.Roles),
                 UserName = UserModel.Email,
                 PasswordHash = UserModel.Password.GetMd5Hash()
             };

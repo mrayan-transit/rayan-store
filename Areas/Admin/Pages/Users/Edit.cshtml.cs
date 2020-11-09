@@ -53,7 +53,7 @@ namespace RayanStore.Areas.Admin.Pages.Users
             //Now you're good to go
             entity.Email = UserModel.Email;
             entity.FullName = UserModel.FullName;
-            entity.Role = UserModel.Role;
+            entity.Roles = string.Join(',', UserModel.Roles);
 
             await _dbContext.SaveChangesAsync();
             return RedirectToPage("Index");

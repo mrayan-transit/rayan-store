@@ -10,9 +10,9 @@
         <input asp-for="Email" class="form-control">
     </div>
     <div class="form-group">
-        <label asp-for="Role"></label>
-        <select asp-for="Role" asp-items="Model.RoleSelectList" class="form-control">
-            <option value="">Select</option>
+        <label asp-for="Roles"></label>
+        <select asp-for="Roles" asp-items="Model.RoleSelectList" multiple class="form-control">
+            
         </select>
     </div>
     @if (Model.Id == 0)

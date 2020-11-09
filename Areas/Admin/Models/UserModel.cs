@@ -18,14 +18,14 @@ namespace RayanStore.Areas.Admin.Models
             Id = entity.Id;
             FullName = entity.FullName;
             Email = entity.Email;
-            Role = entity.Role;
+            Roles = entity.Roles.Split(',');
 
             initializeModel();
         }
 
         private void initializeModel()
         {
-            RoleSelectList = User.Roles.Select(x => new SelectListItem(x, x));
+            RoleSelectList = User.AvailableRoles.Select(x => new SelectListItem(x, x));
         }
 
         public int Id {get;set;}
@@ -46,8 +46,8 @@ namespace RayanStore.Areas.Admin.Models
         public string ConfirmPassword {get;set;}
 
         [Required]
-        public string Role {get;set;}
-
+        public string[] Roles {get;set;}
+        
         public IEnumerable<SelectListItem> RoleSelectList {get;set;}
     }
 }

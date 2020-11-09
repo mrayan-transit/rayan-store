@@ -24,7 +24,7 @@
         </div>
     </div>
     <div class="form-group">
-        @if (!string.IsNullOrEmpty(Model.ImageUrl))
+        @if (Model != null && !string.IsNullOrEmpty(Model.ImageUrl))
         {
             <img src="/@(!string.IsNullOrEmpty(Model.ImageUrl) ? Model.ImageUrl : "img/no-image.png")" alt="@Model.Name photo" height="200">
         }

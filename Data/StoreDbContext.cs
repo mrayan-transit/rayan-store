@@ -12,5 +12,14 @@ namespace RayanStore.Data
         public DbSet<Product> Products {get;set;}
 
         public DbSet<User> Users {get;set;}
+
+        public DbSet<Order> Orders {get;set;}
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<OrderProduct>()
+                .HasKey(x => new { x.OrderId, x.ProductId });
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
