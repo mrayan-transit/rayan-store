@@ -36,13 +36,15 @@ namespace RayanStore
                 .AddCookie(options => 
                 {
                     options.LoginPath = "/Admin/Account/Login";
+                    options.AccessDeniedPath = "/Admin/Account/AccessDenied";
                 });
 
             services.AddRazorPages()
                 .AddRazorPagesOptions(options => 
                 {
                     options.Conventions.AuthorizeAreaFolder("Admin", "/")
-                        .AllowAnonymousToAreaFolder("Admin", "/Account");
+                        .AllowAnonymousToAreaFolder("Admin", "/Account")
+                        .AuthorizePage("/Admin/Account/Logout");
                 });
         }
 

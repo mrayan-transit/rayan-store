@@ -65,6 +65,17 @@
               </p>
             </a>
           </li>
+          @if (User.IsInRole("Admin"))
+          {
+            <li class="nav-item">
+              <a asp-page="/Users/Index" class="nav-link">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                  Users
+                </p>
+              </a>
+            </li>
+          }
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

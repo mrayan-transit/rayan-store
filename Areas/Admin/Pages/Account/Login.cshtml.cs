@@ -56,7 +56,8 @@ namespace RayanStore.Admin.Pages.Account
             var claims = new List<Claim>()
             {
                 new Claim(ClaimTypes.Name, user.UserName),
-                new Claim("FullName", user.FullName)
+                new Claim("FullName", user.FullName),
+                new Claim(ClaimTypes.Role, user.Role)
             };
             
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
