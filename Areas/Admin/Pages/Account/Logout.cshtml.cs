@@ -23,13 +23,8 @@ namespace RayanStore.Admin.Pages.Account
 
         public async Task<IActionResult> OnGet()
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                await HttpContext.SignOutAsync();
-                return RedirectToPage("Login");
-            }
-            else
-                return Unauthorized();
+            await HttpContext.SignOutAsync();
+            return RedirectToPage("Login");
         }
     }
 }

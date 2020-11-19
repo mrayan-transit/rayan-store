@@ -58,6 +58,10 @@ namespace RayanStore.Admin.Pages.Account
                 new Claim(ClaimTypes.Name, user.UserName),
                 new Claim("FullName", user.FullName)
             };
+
+            //Add roles claims
+            foreach (var role in user.Roles.Split(','))
+                claims.Add(new Claim(ClaimTypes.Role, role));
             
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             var authProperties = new AuthenticationProperties()

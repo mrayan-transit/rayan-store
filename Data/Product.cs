@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace RayanStore.Data
 {
     public class Product
@@ -13,5 +15,7 @@ namespace RayanStore.Data
         public float Price {get;set;}
 
         public bool IsFeatured {get;set;}
+
+        public ICollection<OrderProduct> OrderProducts {get;set;}
     }
 }

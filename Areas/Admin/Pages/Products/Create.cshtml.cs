@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RayanStore.Areas.Admin.Models;
@@ -10,6 +11,7 @@ using RayanStore.Services;
 
 namespace RayanStore.Areas.Admin.Pages.Products
 {
+    [Authorize(Roles = "Admin,Merchant")]
     public class CreateModel : PageModel
     {
         private readonly StoreDbContext _dbContext;

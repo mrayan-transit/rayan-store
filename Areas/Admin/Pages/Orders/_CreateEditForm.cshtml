@@ -1,0 +1,31 @@
+@model OrderModel
+<form method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="CustomerName"></label>
+        <input asp-for="CustomerName" class="form-control">
+        <span asp-validation-for="CustomerName"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CustomerPhone"></label>
+        <input asp-for="CustomerPhone" class="form-control">
+        <span asp-validation-for="CustomerPhone"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CustomerEmail"></label>
+        <input asp-for="CustomerEmail" class="form-control">
+        <span asp-validation-for="CustomerEmail"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="SelectedProductIds"></label>
+        @foreach (var product in Model.Products)
+        {
+            string controlId = $"product-{product.Id}-check";
+            <div class="custom-control custom-checkbox">
+                <input id="@controlId" name="SelectedProductIds" type="checkbox" class="custom-control-input" value="@product.Id">
+                <label for="@controlId" class="custom-control-label">@product.Name ($@product.Price.ToString("0.##"))</label>
+            </div>
+        }
+    </div>
+    
+    <button class="btn btn-success">Save</button>
+</form>

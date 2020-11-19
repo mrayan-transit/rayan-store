@@ -59,7 +59,8 @@ namespace RayanStore.Admin.Pages.Account
                 FullName = FullName,
                 Email = Email,
                 UserName = Email,
-                PasswordHash = Password.GetMd5Hash()
+                PasswordHash = Password.GetMd5Hash(),
+                Roles = "Admin"
             };
             
             _dbContext.Users.Add(user);

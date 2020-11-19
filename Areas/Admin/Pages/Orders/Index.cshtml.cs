@@ -8,9 +8,9 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using RayanStore.Data;
 
-namespace RayanStore.Areas.Admin.Pages.Products
+namespace RayanStore.Areas.Admin.Pages.Orders
 {
-    [Authorize(Roles = "Admin,Sales,Merchant")]
+    [Authorize(Roles = "Admin,Sales")]
     public class IndexModel : PageModel
     {
         private readonly StoreDbContext _dbContext;
@@ -19,9 +19,9 @@ namespace RayanStore.Areas.Admin.Pages.Products
 
         public async Task OnGetAsync()
         {
-            Products = await _dbContext.Products.AsNoTracking().ToListAsync();
+            Orders = await _dbContext.Orders.AsNoTracking().ToListAsync();
         }
 
-        public List<Product> Products {get;private set;}
+        public List<Order> Orders {get;private set;}
     }
 }
